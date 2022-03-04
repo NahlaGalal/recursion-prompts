@@ -70,7 +70,12 @@ var exponent = function (base, exp) {
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function (n) {};
+var powerOfTwo = function (n) {
+  if(n === 0) return false;
+  if(n === 1) return true;
+  if(n % 2) return false;
+  return powerOfTwo(n / 2);
+};
 
 // 9. Write a function that reverses a string.
 var reverse = function (string) {};
