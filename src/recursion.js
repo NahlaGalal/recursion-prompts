@@ -85,7 +85,7 @@ var reverse = function (string) {
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function (string) {
-  if(string.length <= 1) return true;
+  if (string.length <= 1) return true;
   string = string.split(" ").join("").toLowerCase();
   let isPlindrom = string[0] === string[string.length - 1];
   let restString = string.slice(1, -1);
@@ -107,26 +107,26 @@ var modulo = function (x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function (x, y) {
-  if(y < 0) {
-    if(x < 0) return multiply(-x, -y);
+  if (y < 0) {
+    if (x < 0) return multiply(-x, -y);
     else return -multiply(x, -y);
   }
-  if(y === 0) return 0;
-  if(y === 1) return x;
+  if (y === 0) return 0;
+  if (y === 1) return x;
   return x + multiply(x, y - 1);
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
 // Math methods to arrive at an approximate quotient (ignore decimal endings).
 var divide = function (x, y) {
-    if (y === 0) return NaN;
-    if (y < 0) {
-      if (x < 0) return divide(-x, -y);
-      else return -divide(x, -y);
-    } else if (x < 0) return -divide(-x, y);
+  if (y === 0) return NaN;
+  if (y < 0) {
+    if (x < 0) return divide(-x, -y);
+    else return -divide(x, -y);
+  } else if (x < 0) return -divide(-x, y);
 
-    if (x < y) return 0;
-    return 1 + divide(x - y, y);
+  if (x < y) return 0;
+  return 1 + divide(x - y, y);
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers. The GCD of two
@@ -135,10 +135,10 @@ var divide = function (x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function (x, y) {
-  if(x <= 0 || y <= 0) return null;
-  if(x % y === 0) return y;
-  if(y % x === 0) return x;
-  return x > y ? gcd(y, x%y) : gcd(y%x, x);
+  if (x <= 0 || y <= 0) return null;
+  if (x % y === 0) return y;
+  if (y % x === 0) return x;
+  return x > y ? gcd(y, x % y) : gcd(y % x, x);
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
@@ -146,9 +146,9 @@ var gcd = function (x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('tomato', 'tomato') // true
 var compareStr = function (str1, str2) {
-  if(!(str1.length) && !(str2.length)) return true;
-  if(!(str1.length) || !(str2.length)) return false;
-  if(str1.charAt(0) !== str2.charAt(0)) return false;
+  if (!str1.length && !str2.length) return true;
+  if (!str1.length || !str2.length) return false;
+  if (str1.charAt(0) !== str2.charAt(0)) return false;
   return compareStr(str1.slice(1), str2.slice(1));
 };
 
@@ -161,16 +161,16 @@ var createArray = function (str) {
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
-  if(!array.length) return [];
-  return [array[array.length - 1], ...reverseArr(array.slice(0, -1))]
+  if (!array.length) return [];
+  return [array[array.length - 1], ...reverseArr(array.slice(0, -1))];
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function (value, length) {
-  if(!length) return [];
-  return [value, ...buildList(value, length - 1)]
+  if (!length) return [];
+  return [value, ...buildList(value, length - 1)];
 };
 
 // 19. Implement FizzBuzz. Given integer n, return an array of the string representations of 1 to n.
@@ -179,10 +179,10 @@ var buildList = function (value, length) {
 // For numbers which are multiples of both three and five, output “FizzBuzz” instead of the number.
 // fizzBuzz(5) // ['1','2','Fizz','4','Buzz']
 var fizzBuzz = function (n) {
-  if(!n) return [];
-  if(!(n%3) && !(n%5)) return [...fizzBuzz(n - 1), 'FizzBuzz'];
-  else if(!(n%3)) return [...fizzBuzz(n - 1), 'Fizz'];
-  else if(!(n%5)) return [...fizzBuzz(n - 1), 'Buzz'];
+  if (!n) return [];
+  if (!(n % 3) && !(n % 5)) return [...fizzBuzz(n - 1), "FizzBuzz"];
+  else if (!(n % 3)) return [...fizzBuzz(n - 1), "Fizz"];
+  else if (!(n % 5)) return [...fizzBuzz(n - 1), "Buzz"];
   return [...fizzBuzz(n - 1), `${n}`];
 };
 
@@ -190,15 +190,15 @@ var fizzBuzz = function (n) {
 // countOccurrence([2,7,4,4,1,4], 4) // 3
 // countOccurrence([2,'banana',4,4,1,'banana'], 'banana') // 2
 var countOccurrence = function (array, value) {
-  if(!array.length) return 0;
-  if(array[0] === value) return 1 + countOccurrence(array.slice(1), value);
-  else return countOccurrence(array.slice(1), value)
+  if (!array.length) return 0;
+  if (array[0] === value) return 1 + countOccurrence(array.slice(1), value);
+  else return countOccurrence(array.slice(1), value);
 };
 
 // 21. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function (array, callback) {
-  if(!array.length) return [];
+  if (!array.length) return [];
   return [callback(array[0]), ...rMap(array.slice(1), callback)];
 };
 
@@ -208,11 +208,11 @@ var rMap = function (array, callback) {
 // countKeysInObj(obj, 'e') // 2
 var countKeysInObj = function (obj, key) {
   let cnt = 0;
-  if(typeof obj !== "object") return 0;
-  Object.keys(obj).forEach(k => {
-    if(key === k && obj[key]) cnt += 1 + countKeysInObj(obj[k], key);
-    else cnt +=  countKeysInObj(obj[k], key)
-  })
+  if (typeof obj !== "object") return 0;
+  Object.keys(obj).forEach((k) => {
+    if (key === k && obj[key]) cnt += 1 + countKeysInObj(obj[k], key);
+    else cnt += countKeysInObj(obj[k], key);
+  });
   return cnt;
 };
 
@@ -220,7 +220,12 @@ var countKeysInObj = function (obj, key) {
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
-var countValuesInObj = function (obj, value) {};
+var countValuesInObj = function (obj, value) {
+  let cnt = 0;
+  if (typeof obj !== "object") return obj === value ? 1 : 0;
+  else Object.keys(obj).forEach((k) => cnt += countValuesInObj(obj[k], value));
+  return cnt;
+};
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
