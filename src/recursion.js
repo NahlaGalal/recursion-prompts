@@ -24,7 +24,6 @@ var sum = function (array) {
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function (array) {
   let sum = 0;
-  if (!array || !array.length) return 0;
   for (let i = 0; i < array.length; i++) {
     if (typeof array[i] === "object") sum += arraySum(array[i]);
     else sum += +array[i];
