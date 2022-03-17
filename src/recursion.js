@@ -22,7 +22,15 @@ var sum = function (array) {
 
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
-var arraySum = function (array) {};
+var arraySum = function (array) {
+  let sum = 0;
+  if (!array || !array.length) return 0;
+  for (let i = 0; i < array.length; i++) {
+    if (typeof array[i] === "object") sum += arraySum(array[i]);
+    else sum += +array[i];
+  }
+  return sum;
+};
 
 // 4. Check if a number is even.
 var isEven = function (n) {
@@ -235,15 +243,13 @@ var replaceKeysInObj = function (obj, oldKey, newKey) {
   Object.keys(obj).forEach((k) => {
     if (k === oldKey) {
       let value =
-        typeof obj[oldKey] === "object"
-          ? { ...obj[oldKey] }
-          : obj[oldKey];
+        typeof obj[oldKey] === "object" ? { ...obj[oldKey] } : obj[oldKey];
       delete obj[oldKey];
       obj[newKey] = value;
     }
     return replaceKeysInObj(obj[k], oldKey, newKey);
   });
-  return obj
+  return obj;
 };
 
 // 25. Get the first n Fibonacci numbers. In the Fibonacci sequence, each subsequent
