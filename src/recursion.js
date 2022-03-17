@@ -306,7 +306,14 @@ var capitalizeFirst = function (array) {
 //   e: {e: {e: 2}, ee: 'car'}
 // };
 // nestedEvenSum(obj1); // 10
-var nestedEvenSum = function (obj) {};
+var nestedEvenSum = function (obj) {
+  let sum = 0;
+  Object.values(obj).forEach((val) => {
+    if (typeof val === "object") sum += nestedEvenSum(val);
+    else if (typeof val === "number" && !(val % 2)) sum += val;
+  });
+  return sum;
+};
 
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
